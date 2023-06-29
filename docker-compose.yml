@@ -31,3 +31,13 @@ services:
             MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?err}
         volumes:
             - ${PWD}
+    
+    phpmyadmin:
+        depends_on:
+            - mariadb
+        image: phpmyadmin/phpmyadmin
+        environment:
+            PMA_HOST: mariadb
+            PMA_PORT: 3306
+        ports:
+            - 8081:80
